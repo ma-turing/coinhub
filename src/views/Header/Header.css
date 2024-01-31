@@ -1,0 +1,41 @@
+@import "../../utils/colors.css";
+
+.header-container {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.brand {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--second-text-color);
+    font-size: 15px;
+    margin: 0 10px;
+}
+
+.menu a:hover {
+    color: var(--text-color);
+}
+
+.btn {
+    display: flex;
+}
+
+.btn .register {
+    display: flex;
+    margin-left: 10px;
+}
+
+.btn .register svg {
+    width: 20px;
+    margin-left: 10px;
+}
