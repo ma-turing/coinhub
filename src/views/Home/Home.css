@@ -1,0 +1,54 @@
+@import "../../utils/colors.css";
+
+.home-container {
+    margin-bottom: 71px;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero-1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-1 h1 {
+    width: 573px;
+    font-size: 71px;
+    line-height: 90px;
+    color: var(--text-color);
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.hero-1 h4 {
+    width: 376px;
+    font-size: 22px;
+    line-height: 40px;
+    margin: 0;
+    font-weight: 500;
+    color: var(--secondary-text-color)
+}
+
+.hero-2 {
+    width: 50%;
+}
+
+.hero-btn {
+    margin-top: 30px;
+
+}
+
+.hero-btn button:first-child{
+    margin-right: 10px;
+}
+
+.people {
+    display: flex;
+    justify-content: space-between;
+}
