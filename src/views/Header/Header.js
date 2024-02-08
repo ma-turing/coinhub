@@ -8,10 +8,10 @@ const Header = () => {
 		<div className="header-container">
 			<h3 className="brand">CoinHub</h3>
 			<div className="menu">
-				{/* <Link to={`/home`}>Home</Link>
+				<Link to={`/home`}>Home</Link>
 				<Link to={`/product`}>Product</Link>
 				<Link to={`/pricing`}>Pricing</Link>
-				<Link to={`/contact`}>Contact</Link> */}
+				<Link to={`/contact`}>Contact</Link>
 			</div>
 			<div className="btn">
 				<Button borderless>Login</Button>
