@@ -2,6 +2,7 @@ import Button from "../../components/Button/Button";
 import Woman from "../../assets/woman.svg";
 import "./Home.css";
 import PeopleCard from "../../components/PeopleCard/PeopleCard";
+import AboutUs from "../AboutUs/AboutUs";
 
 const people = {
 	title: "The quick fox jumps over the lazy dog",
@@ -11,6 +12,7 @@ const people = {
 
 const Home = () => {
 	return (
+        <>
 		<div className="home-container">
 			<div className="hero">
 				<div className="hero-1">
@@ -36,6 +38,8 @@ const Home = () => {
                 }
             </div>
 		</div>
+         <AboutUs />
+         </>
 	);
 };
 
