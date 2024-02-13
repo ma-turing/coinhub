@@ -1,0 +1,37 @@
+@import "../../utils/colors.css";
+
+.about-us-container {
+    width: 72%;
+  margin: auto;
+  margin-top: 112px;
+  margin-bottom: 112px;
+}
+
+.about-us-section {
+    margin-top: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-us-content {
+    width: 327px;
+}
+
+.about-us-content h3 {
+    font-size: 30px;
+    color: var(--text-color);
+}
+
+.about-us-content p {
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--second-text-color);
+    margin: 30px 0;
+}
+
+.about-us-content h6 {
+    font-size: 16px;
+    color: var(--second-text-color);
+    font-weight: 600;
+}
