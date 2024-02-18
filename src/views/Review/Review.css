@@ -1,0 +1,40 @@
+@import "../../utils/colors.css";
+
+.review-container {
+    margin: 112px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.client-review {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-text-color);
+    width: 749px;
+    padding: 40px 0;
+}
+
+img {
+    margin-top: 30px;
+}
+
+.client-review .client-name {
+    font-size: 30px;
+    color: var(--text-color);
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.client-review .client-title {
+    font-size: 16px;
+    color: var(--second-text-color);
+}
+
+.client-review .rating-container {
+    margin-top: 15px;
+}
