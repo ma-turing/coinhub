@@ -4,6 +4,7 @@ import "./Home.css";
 import PeopleCard from "../../components/PeopleCard/PeopleCard";
 import AboutUs from "../AboutUs/AboutUs";
 import Review from "../Review/Review";
+import Product from "../Product/Product";
 
 const people = {
 	title: "The quick fox jumps over the lazy dog",
@@ -40,6 +41,7 @@ const Home = () => {
             </div>
 		</div>
 
+        <Product />
         <Review />
          <AboutUs />
          </>
