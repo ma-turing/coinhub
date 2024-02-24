@@ -5,7 +5,7 @@ import "./Product.css"
 
 const Product = () => {
 	return (
-		<div className="product-container">
+		<div id="product" className="product-container">
 			<SectionHeaders
 				heading={`Better Strategy \\\\n With Quality Business`}
 				subheading={`Problems trying to resolve the conflict between \\\\n the two major realms of Classical physics: Newtonian mechanics`}

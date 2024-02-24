@@ -4,7 +4,7 @@ import "./AboutUs.css"
 
 const AboutUs = () => {
 	return (
-		<div className="about-us-container">
+		<div id="about-us" className="about-us-container">
 			<SectionHeaders
 				heading="About Us"
 				subheading={`Problems trying to resolve the conflict between \\\\n the two major realms of Classical physics: Newtonian mechanics`}

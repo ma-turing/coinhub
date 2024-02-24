@@ -1,11 +1,11 @@
 import SectionHeaders from "../../components/SectionHeaders/SectionHeaders";
 import User from "../../assets/user.svg";
-import "./Review.css"
 import Rating from "../../components/Rating/Rating";
+import "./Review.css"
 
 const Review = () => {
     return (
-        <div className="review-container">
+        <div id="review" className="review-container">
             <SectionHeaders heading="What Clients Say" subheading={`Problems trying to resolve the conflict between \\\\n the two major realms of Classical physics: Newtonian mechanics `} />
             <div className="client-review">
                 <img src={User} alt="client review"/>
