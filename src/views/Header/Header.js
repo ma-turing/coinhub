@@ -1,17 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RightArrow } from "../../assets/rightArrow";
 import Button from "../../components/Button/Button";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import "./Header.css";
 
 const Header = () => {
+	const navigate = useNavigate()
+
 	return (
 		<div className="header-container">
 			<h3 className="brand">CoinHub</h3>
 			<div className="menu">
-				<Link to={`/home`}>Home</Link>
-				<Link to={`/product`}>Product</Link>
-				<Link to={`/pricing`}>Pricing</Link>
-				<Link to={`/contact`}>Contact</Link>
+				<Link exact to="/">
+					Home
+				</Link>
+				<Link to="/explore">Explore</Link>
+				<AnchorLink onClick={() => { navigate("/product")}} href="#product">
+					Product
+				</AnchorLink>
+				<AnchorLink onClick={() => { navigate("/pricing")}} href="#pricing">
+					Pricing
+				</AnchorLink>
+				<AnchorLink onClick={() => { navigate("/contact")}} href="#contact">
+					Contact
+				</AnchorLink>
 			</div>
 			<div className="btn">
 				<Button borderless>Login</Button>
