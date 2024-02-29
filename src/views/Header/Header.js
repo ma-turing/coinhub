@@ -5,23 +5,40 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import "./Header.css";
 
 const Header = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	return (
 		<div className="header-container">
-			<h3 className="brand">CoinHub</h3>
+			<Link exact to="/" className="brand">
+				<h3>CoinHub</h3>
+			</Link>
 			<div className="menu">
 				<Link exact to="/">
 					Home
 				</Link>
 				<Link to="/explore">Explore</Link>
-				<AnchorLink onClick={() => { navigate("/product")}} href="#product">
+				<AnchorLink
+					onClick={() => {
+						navigate("/product");
+					}}
+					href="#product"
+				>
 					Product
 				</AnchorLink>
-				<AnchorLink onClick={() => { navigate("/pricing")}} href="#pricing">
+				<AnchorLink
+					onClick={() => {
+						navigate("/pricing");
+					}}
+					href="#pricing"
+				>
 					Pricing
 				</AnchorLink>
-				<AnchorLink onClick={() => { navigate("/contact")}} href="#contact">
+				<AnchorLink
+					onClick={() => {
+						navigate("/contact");
+					}}
+					href="#contact"
+				>
 					Contact
 				</AnchorLink>
 			</div>
