@@ -5,5 +5,6 @@ export const colorTypes = {
     light_text: "#FFFFFF",
     success: "#2DC071",
     muted: "#BDBDBD",
-    rating: "#F3CD03"
+    rating: "#F3CD03",
+    border: "#DEDEDE"
 }
