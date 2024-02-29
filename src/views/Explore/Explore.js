@@ -1,11 +1,21 @@
+import { connect } from "react-redux";
+import { increment, decrement } from "../../redux/actionCreators";
 import "./Explore.css";
 
-const Explore = () => {
+const Explore = (props) => {
+	const { count, increment, decrement } = props;
+
 	return (
 		<div>
-			<p>Explore page</p>
+			<button onClick={increment}> + </button>
+			<p>{count}</p>
+			<button onClick={decrement}> - </button>
 		</div>
 	);
 };
 
-export default Explore;
+const mapStateToProps = (state) => ({
+	count: state.countReducer.count
+})
+
+export default connect (mapStateToProps, {increment, decrement})(Explore);
