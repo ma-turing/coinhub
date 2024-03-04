@@ -1,0 +1,13 @@
+.pricing-container {
+	margin: 112px 0;
+}
+
+.prices {
+	margin-top: 80px;
+	display: flex;
+	justify-content: center;
+}
+
+.prices .pricing-card-container {
+    margin: 0 15px;
+}
