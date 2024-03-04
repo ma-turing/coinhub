@@ -1,0 +1,75 @@
+@import url("../../utils/colors.css");
+
+.pricing-card-container {
+	display: flex;
+	flex-direction: column;
+	padding: 50px 29.5px;
+	border: 1px solid var(--primary-color);
+	border-radius: 10px;
+	width: 339px;
+	justify-content: center;
+	align-items: center;
+}
+
+.pricing-card-heading {
+	text-transform: uppercase;
+	color: var(--text-color);
+	margin-bottom: 35px;
+	font-size: 23px;
+}
+
+.pricing-card-subheading {
+	color: var(--second-text-color);
+	margin-bottom: 35px;
+	font-size: 18px;
+}
+
+.price {
+	color: var(--primary-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 35px;
+}
+
+.price h2 {
+	font-weight: 800;
+	font-size: 40px;
+}
+
+.price div {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+
+.price h5 {
+	font-weight: 800;
+	font-size: 15px;
+}
+
+.price h6 {
+	font-weight: 300;
+	font-size: 13px;
+}
+
+.pricing-features {
+	width: 247px;
+	margin-bottom: 35px;
+}
+
+.pricing-features div {
+	display: flex;
+	align-items: center;
+    margin-bottom: 15px;
+}
+
+.pricing-features div svg {
+	width: 32px;
+}
+
+.pricing-features div h6 {
+	margin-left: 10px;
+    color: var(--text-color);
+    font-size: 15px;
+}
