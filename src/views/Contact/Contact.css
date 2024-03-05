@@ -1,0 +1,106 @@
+@import url("../../utils/colors.css");
+
+.contact-container {
+	width: 100%;
+	height: 100%;
+}
+
+.contact-form-wrapper {
+	width: 100%;
+	position: relative;
+}
+
+.contact-background {
+	position: relative;
+	width: 100%;
+}
+
+.contact-form {
+	position: absolute;
+	top: 90px;
+	left: 195px;
+}
+
+.contact-form h5 {
+	color: var(--text-color);
+	font-size: 16px;
+}
+
+.contact-form h2 {
+	color: var(--text-color);
+	font-size: 45px;
+	line-height: 60px;
+}
+
+.contact-form form {
+	display: flex;
+	flex-direction: column;
+	margin: 40px 0;
+}
+
+.contact-input-wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.contact-input-wrapper input {
+	padding: 15px 20px;
+	width: 268px;
+	border: 1px solid var(--form-border-color);
+	border-radius: 5px;
+	background-color: var(--fill-color);
+	color: var(--second-text-color);
+	font-size: 15px;
+}
+
+.contact-input-wrapper input:nth-of-type(1) {
+	margin-right: 20px;
+}
+
+.contact-form form textarea {
+	width: 601px;
+	height: 140px;
+	padding: 15px 20px;
+	border: 1px solid var(--form-border-color);
+	border-radius: 5px;
+	background-color: var(--fill-color);
+	color: var(--second-text-color);
+	font-size: 15px;
+}
+
+.contact-form input::placeholder, textarea::placeholder {
+	color: var(--muted-color);
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.contact-form form input:focus, input:active, textarea:focus, textarea:active {
+	outline: none;
+	border-color: var(--muted-color);
+}
+
+.contact-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--fill-color);
+	padding: 40px 195px;
+	margin-top: -5px;
+}
+
+.contact-footer-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.contact-footer-text h3 {
+	font-size: 25px;
+	color: var(--text-color);
+	margin-bottom: 10px;
+}
+
+.contact-footer-text p {
+	font-size: 16px;
+	color: var(--second-text-color);
+}
