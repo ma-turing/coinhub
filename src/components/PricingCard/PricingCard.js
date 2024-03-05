@@ -29,7 +29,7 @@ const PricingCard = (props) => {
 				))}
 			</div>
 
-			<Button primary large>{data.btn_text}</Button>
+			<Button primary medium>{data.btn_text}</Button>
 		</div>
 	);
 };

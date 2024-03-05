@@ -1,4 +1,4 @@
-@import "../../utils//colors.css";
+@import "../../utils/colors.css";
 
 .section-headers {
 	display: flex;
@@ -8,14 +8,12 @@
 }
 
 .section-headers h2 {
-    /* width: 361px; */
 	color: var(--text-color);
     font-size: 45px;
     line-height: 60px;
 }
 
 .section-headers p {
-    /* width: 470px; */
 	color: var(--second-text-color);
     font-size: 16px;
     line-height: 25px;
