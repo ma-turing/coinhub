@@ -21,12 +21,12 @@
     padding: 40px 0;
 }
 
-img {
+.client-review img {
     margin-top: 30px;
 }
 
 .client-review .client-name {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--text-color);
     margin-top: 15px;
     margin-bottom: 8px;

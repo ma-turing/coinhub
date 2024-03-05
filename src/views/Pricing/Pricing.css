@@ -11,3 +11,7 @@
 .prices .pricing-card-container {
     margin: 0 15px;
 }
+
+.pricing-card-container button {
+	width: 100%;
+}

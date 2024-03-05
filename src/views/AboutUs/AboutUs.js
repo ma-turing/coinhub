@@ -11,7 +11,7 @@ const AboutUs = () => {
 			/>
 
 			<div className="about-us-section">
-				<img src={About} alt="About Coinbase" />
+				<img src={About} alt="About coinhub" />
 				<div className="about-us-content">
 					<h3>A rethink of how we work</h3>
 					<p>
