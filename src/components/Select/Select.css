@@ -1,0 +1,40 @@
+@import url("../../utils/colors.css");
+
+.custom-select {
+	width: 200px;
+	cursor: pointer;
+}
+
+.selected-option {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.active-selected-option {
+	background-color: #f3f3f3;
+	border: 1px solid blue;
+	border-bottom: 0;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 15px;
+}
+
+.select-content {
+	border: 1px solid blue;
+	border-top: 0;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.select-content .option {
+	padding: 15px;
+}
+
+.select-content .option:hover {
+	background-color: gray;
+}
+
+.select-content .active-option {
+	background-color: green;
+}
