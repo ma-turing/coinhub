@@ -1,0 +1,38 @@
+@import "../../utils/colors.css";
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 195px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+}
+
+.footer-content h3 {
+    font-size: 25px;
+	color: var(--text-color);
+	margin-bottom: 25px;
+}
+
+.footer-content p, .footer-content a {
+    font-size: 16px;
+    line-height: 25px;
+	color: var(--second-text-color);
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.footer-logo {
+    width: 112px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.footer-logo img {
+    cursor: pointer;
+}
