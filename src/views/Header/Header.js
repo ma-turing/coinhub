@@ -10,7 +10,7 @@ const Header = () => {
 	return (
 		<div className="header-container">
 			<Link exact to="/" className="brand">
-				<h3>CoinHub</h3>
+				<h3>coinhub</h3>
 			</Link>
 			<div className="menu">
 				<Link exact to="/">
