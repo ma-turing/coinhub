@@ -1,27 +1,35 @@
 @import url("../../utils/colors.css");
 
 .custom-select {
-	width: 200px;
+	width: 100%;
 	cursor: pointer;
+	font-size: 15px;
 }
 
 .selected-option {
 	padding: 15px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--form-border-color);
 	border-radius: 5px;
+	color: var(--second-text-color);
+	background-color: var(--fill-color);
 }
 
 .active-selected-option {
-	background-color: #f3f3f3;
-	border: 1px solid blue;
+	border: 1px solid #ccc;
+	color: var(--second-text-color);
+	background-color: var(--fill-color);
 	border-bottom: 0;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
 }
 
+.select-placeholder {
+	color: var(--muted-color); 
+}
+
 .select-content {
-	border: 1px solid blue;
+	border: 1px solid #ccc;
 	border-top: 0;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
@@ -29,12 +37,14 @@
 
 .select-content .option {
 	padding: 15px;
+	color: var(--second-text-color);
+	background-color: var(--light-text-color);
 }
 
 .select-content .option:hover {
-	background-color: gray;
+	background-color: var(--border-color);
 }
 
 .select-content .active-option {
-	background-color: green;
+	background-color: var(--muted-color);
 }

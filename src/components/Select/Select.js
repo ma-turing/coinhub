@@ -14,6 +14,10 @@ const Select = (props) => {
 		setIsOpen(false);
 	};
 
+	useEffect(() => {
+		setSelectedOption({});
+	}, [options]);
+
 	const handleClickOutside = (event) => {
 		if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
 			setIsOpen(false);
@@ -33,7 +37,7 @@ const Select = (props) => {
 				{selectedOption.text ? (
 					<span>{selectedOption.text}</span>
 				) : (
-					<span>Choose an option</span>
+					<span className="select-placeholder">Choose an option</span>
 				)}
 			</div>
 			{isOpen && (
