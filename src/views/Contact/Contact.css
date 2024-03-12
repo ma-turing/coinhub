@@ -58,6 +58,19 @@
 	margin-right: 20px;
 }
 
+.contact-input-wrapper .custom-select {
+	width: 310px;
+}
+
+.contact-input-wrapper .custom-select:nth-of-type(1) {
+	margin-right: 23px;
+}
+
+.select-abs {
+	position: absolute;
+  	top: 190px;
+}
+
 .contact-form form textarea {
 	width: 601px;
 	height: 140px;
@@ -67,6 +80,7 @@
 	background-color: var(--fill-color);
 	color: var(--second-text-color);
 	font-size: 15px;
+	margin-top: 70px;
 }
 
 .contact-form input::placeholder, textarea::placeholder {

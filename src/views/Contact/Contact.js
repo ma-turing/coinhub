@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import background from "../../assets/contact-background.svg";
 import Button from "../../components/Button/Button";
 import Select from "../../components/Select/Select";
@@ -8,8 +8,28 @@ import "./Contact.css";
 const Contact = () => {
 	const [selectedHeader, setSelectedHeader] = useState("");
 	const [selectedNavItem, setSelectedNavItem] = useState("");
+	const [data, _] = useState(
+		contactData.map((item) => ({
+			id: item.header,
+			text: item.header,
+		}))
+	);
 
-	console.log(selectedNavItem, "selectedNavItem");
+	const [secondData, setSecondData] = useState([]);
+
+	useEffect(() => {
+		if (selectedHeader) {
+			const newData = contactData
+				.find((item) => item.header === selectedHeader)
+				?.issues?.map((issue, index) => ({
+					id: index + 1,
+					text: issue,
+				}));
+			setSecondData(newData || []);
+		}
+	}, [selectedHeader, data]);
+
+	// console.log(selectedNavItem, "selectedNavItem");
 
 	return (
 		<div className="contact-container" id="contact">
@@ -23,26 +43,17 @@ const Contact = () => {
 							<input type="text" placeholder="Full Name" />
 							<input type="email" placeholder="Email" />
 						</div>
-						<div className="contact-input-wrapper">
+						<div className="contact-input-wrapper select-abs">
 							<Select
-								options={contactData.map((item) => ({
-									id: item.header,
-									text: item.header,
-								}))}
+								options={data}
 								onSelect={(option) => setSelectedHeader(option.id)}
 							/>
-							{selectedHeader &&
-							
-										<Select
-									
-											options={contactData
-												.find((item) => item.header === selectedHeader)
-												?.issues?.map((issue, index) => ({ id: index, text: issue }))}
-											// options={item.issues.split(", ").map((text, id) => ({ id, text }))}
-											onSelect={(option) => setSelectedNavItem(option.text)}
-										/>
-								
-							}
+							{selectedHeader && (
+								<Select
+									options={secondData}
+									onSelect={(option) => setSelectedNavItem(option.text)}
+								/>
+							)}
 						</div>
 						<textarea placeholder="Message" />
 					</form>
