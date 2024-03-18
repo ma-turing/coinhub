@@ -2,24 +2,28 @@ import { combineReducers } from "redux"
 import * as types from "./actionTypes"
 
 const initialState = {
-    count: 0
+    loading: false,
+    assets: [],
+    error: "",
 }
 
-const countReducer = (state = initialState, action) => {
+const cryptoReducer = (state = initialState, action) => {
     const{type, payload} = action
 
     switch(type){
-        case types.INCREMENT_COUNT:
-            return {...state, count: state.count + 1}
-        case types.DECREMENT_COUNT:
-            return {...state, count: state.count - 1}
+        case types.GET_CRYPTO_START:
+            return {...state, loading: true}
+        case types.GET_CRYPTO_SUCCESS:
+            return {...state, loading: false, assets: payload}
+        case types.GET_CRYPTO_FAIL:
+            return {...state, loading: false, error: payload}
         default:
             return state
     }
 }
 
 const rootReducer = combineReducers({
-    countReducer,
+    cryptoReducer,
 })
 
 export default rootReducer
