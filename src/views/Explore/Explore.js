@@ -1,21 +1,32 @@
 import { connect } from "react-redux";
-import { increment, decrement } from "../../redux/actionCreators";
+import { getCryptocurrencies } from "../../redux/actionCreators";
 import "./Explore.css";
+import { useEffect } from "react";
 
 const Explore = (props) => {
-	const { count, increment, decrement } = props;
+	const { fetchCryptocurrencies, loading, assets, error } = props;
+
+	useEffect(() => {
+		fetchCryptocurrencies()
+	}, [fetchCryptocurrencies]);
+	
+	console.log(assets, 'assets');
 
 	return (
 		<div>
-			<button onClick={increment}> + </button>
-			<p>{count}</p>
-			<button onClick={decrement}> - </button>
+			<h1>Explore</h1>
+			{loading && <h2>Loading...</h2>}
+			{error && <h2>{error}</h2>}
 		</div>
 	);
 };
 
 const mapStateToProps = (state) => ({
-	count: state.countReducer.count
-})
+	loading: state.cryptoReducer.loading,
+	assets: state.cryptoReducer.assets,
+	error: state.cryptoReducer.error,
+});
 
-export default connect (mapStateToProps, {increment, decrement})(Explore);
+export default connect(mapStateToProps, {
+	fetchCryptocurrencies: () => getCryptocurrencies(),
+})(Explore);
