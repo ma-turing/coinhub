@@ -31,16 +31,12 @@
     color: var(--text-color);
 }
 
-.btn {
-    display: flex;
-}
-
-.btn .register {
+.explore-btn {
     display: flex;
     margin-left: 10px;
 }
 
-.btn .register svg {
+.explore-btn svg {
     width: 20px;
     margin-left: 10px;
 }

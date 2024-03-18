@@ -7,6 +7,10 @@ import "./Header.css";
 const Header = () => {
 	const navigate = useNavigate();
 
+	const handleClick = () => {
+		navigate('/explore');
+	};
+
 	return (
 		<div className="header-container">
 			<Link exact to="/" className="brand">
@@ -16,7 +20,14 @@ const Header = () => {
 				<Link exact to="/">
 					Home
 				</Link>
-				<Link to="/explore">Explore</Link>
+				<AnchorLink
+					onClick={() => {
+						navigate("/about-us");
+					}}
+					href="#about-us"
+				>
+					About Us
+				</AnchorLink>
 				<AnchorLink
 					onClick={() => {
 						navigate("/product");
@@ -42,12 +53,9 @@ const Header = () => {
 					Contact
 				</AnchorLink>
 			</div>
-			<div className="btn">
-				<Button borderless>Login</Button>
-				<Button primary className="register">
-					Become a member <RightArrow />
-				</Button>
-			</div>
+			<Button primary className="explore-btn" onClick={handleClick}>
+				Explore now <RightArrow />
+			</Button>
 		</div>
 	);
 };
