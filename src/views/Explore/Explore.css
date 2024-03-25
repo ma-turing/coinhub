@@ -1,0 +1,109 @@
+@import url("../../utils/colors.css");
+
+.explore-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--fill-color);
+}
+
+table {
+	/* width: 80%; */
+	border: 1px solid var(--fill-color);
+	border-radius: 5px;
+	margin: 50px 0;
+}
+
+thead {
+	display: flex;
+	border-bottom: 1px solid var(--form-border-color);
+	background-color: var(--fill-color);
+}
+
+thead th {
+	width: 130px;
+	text-align: end;
+	padding: 10px;
+	color: var(--second-text-color);
+	font-weight: 400;
+	font-size: 14px;
+}
+
+thead th:nth-of-type(1) {
+	width: 80px;
+	text-align: center;
+}
+
+thead th:nth-of-type(2) {
+	width: 250px;
+	text-align: start;
+}
+
+tbody {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--light-text-color);
+}
+
+tr {
+	display: flex;
+	border-bottom: 1px solid var(--form-border-color);
+}
+
+tr td {
+	width: 130px;
+	padding: 10px;
+	color: var(--text-color);
+	font-weight: 500;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+}
+
+tr td:nth-of-type(1) {
+	width: 80px;
+	justify-content: center;
+}
+
+tr .crypto {
+	width: 250px;
+	padding: 10px;
+	display: flex;
+	justify-content: start;
+    align-items: center;
+}
+
+.crypto img {
+    width: 30px;
+    height: 30px;
+}
+
+.crypto a {
+	margin-left: 10px;
+    text-decoration: none;
+}
+
+.crypto a:hover {
+    text-decoration: underline;
+}
+
+.crypto-name {
+	color: var(--text-color);
+	font-size: 15px;
+}
+
+.crypto-symbol {
+	color: var(--second-text-color);
+	font-size: 13px;
+}
+
+.neg-change {
+    color: var(--danger-color);
+}
+
+.pos-change {
+    color: var(--success-color);
+}
