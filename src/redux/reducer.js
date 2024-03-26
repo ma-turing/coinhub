@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     assets: [],
     error: "",
+    currentLimit: 20
 }
 
 const cryptoReducer = (state = initialState, action) => {
@@ -17,6 +18,8 @@ const cryptoReducer = (state = initialState, action) => {
             return {...state, loading: false, assets: payload}
         case types.GET_CRYPTO_FAIL:
             return {...state, loading: false, error: payload}
+        case types.GET_CURRENT_LIMIT:
+            return {...state, currentLimit: payload}
         default:
             return state
     }
