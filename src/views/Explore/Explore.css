@@ -7,10 +7,40 @@
 	justify-content: center;
 	align-items: center;
 	background-color: var(--fill-color);
+	padding-bottom: 50px;
+}
+
+.market-highlight {
+	background-color: var(--primary-color);
+	width: 100%;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+}
+
+.stat-container {
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.stat-label {
+	color: var(--light-text-color);
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.stat-value {
+	color: var(--light-text-color);
+	font-size: 20px;
+	font-weight: 500;
+	text-transform: uppercase;
 }
 
 table {
-	/* width: 80%; */
+	width: 75%;
 	border: 1px solid var(--fill-color);
 	border-radius: 5px;
 	margin: 50px 0;
@@ -73,21 +103,21 @@ tr .crypto {
 	padding: 10px;
 	display: flex;
 	justify-content: start;
-    align-items: center;
+	align-items: center;
 }
 
 .crypto img {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .crypto a {
 	margin-left: 10px;
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .crypto a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .crypto-name {
@@ -101,9 +131,9 @@ tr .crypto {
 }
 
 .neg-change {
-    color: var(--danger-color);
+	color: var(--danger-color);
 }
 
 .pos-change {
-    color: var(--success-color);
+	color: var(--success-color);
 }
