@@ -1,5 +1,4 @@
-import { combineReducers } from "redux"
-import * as types from "./actionTypes"
+import * as types from "../actionTypes"
 
 const initialState = {
     loading: false,
@@ -8,15 +7,15 @@ const initialState = {
     currentLimit: 20
 }
 
-const cryptoReducer = (state = initialState, action) => {
+const assetsReducer = (state = initialState, action) => {
     const{type, payload} = action
 
     switch(type){
-        case types.GET_CRYPTO_START:
+        case types.GET_ASSETS_START:
             return {...state, loading: true}
-        case types.GET_CRYPTO_SUCCESS:
+        case types.GET_ASSETS_SUCCESS:
             return {...state, loading: false, assets: payload}
-        case types.GET_CRYPTO_FAIL:
+        case types.GET_ASSETS_FAIL:
             return {...state, loading: false, error: payload}
         case types.GET_CURRENT_LIMIT:
             return {...state, currentLimit: payload}
@@ -25,8 +24,4 @@ const cryptoReducer = (state = initialState, action) => {
     }
 }
 
-const rootReducer = combineReducers({
-    cryptoReducer,
-})
-
-export default rootReducer
+export default assetsReducer
