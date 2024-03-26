@@ -1,40 +1,52 @@
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { getCryptocurrencies } from "../../redux/actionCreators";
+import { getCryptocurrencies, getCurrentLimit } from "../../redux/actionCreators";
+import { formatCurrency, formatPercentage } from "../../utils/formatter";
+import Button from "../../components/Button/Button";
 import "./Explore.css";
-import { useEffect } from "react";
 
 const Explore = (props) => {
-	const { fetchCryptocurrencies, loading, assets, error } = props;
+	const { fetchCryptocurrencies, setCurrentLimit, loading, assets, error, currentLimit } = props;
+
+	
 
 	useEffect(() => {
-		fetchCryptocurrencies();
-	}, [fetchCryptocurrencies]);
+		fetchCryptocurrencies(currentLimit);
 
-	console.log(assets, "assets");
+		const intervalId = setInterval(() => {
+			fetchCryptocurrencies(currentLimit)
+		}, 60000)
 
-	const formatNumber = (num) => {
-		return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-	};
-
-	const formatCurrency = (num) => {
-		if (num >= 1e12) {
-			return (num / 1e12).toFixed(2) + "t";
-		} else if (num >= 1e9) {
-			return (num / 1e9).toFixed(2) + "b";
-		} else if (num >= 1e6) {
-			return (num / 1e6).toFixed(2) + "m";
-		} else {
-			return formatNumber(num);
-		}
-	};
-
-	const formatPercentage = (num) => {
-		return formatNumber(num) + "%";
-	};
+		return () => clearInterval(intervalId)
+	}, [fetchCryptocurrencies, currentLimit]);
 
 	return (
 		<div className="explore-container">
-			<h1>Explore</h1>
+			<div className="market-highlight">
+				<div className="stat-container">
+					<div className="stat">
+						<p className="stat-label">Market cap</p>
+						<p className="stat-value">$2.64t</p>
+					</div>
+					<div className="stat">
+						<p className="stat-label">Exchange vol</p>
+						<p className="stat-value">$2.64t</p>
+					</div>
+					<div className="stat">
+						<p className="stat-label">Assets</p>
+						<p className="stat-value">2296</p>
+					</div>
+					<div className="stat">
+						<p className="stat-label">Exchanges</p>
+						<p className="stat-value">73</p>
+					</div>
+					<div className="stat">
+						<p className="stat-label">Markets</p>
+						<p className="stat-value">9250</p>
+					</div>
+				</div>
+			</div>
+
 			{loading && <h2>Loading...</h2>}
 			{error && <h2>{error}</h2>}
 
@@ -63,16 +75,26 @@ const Explore = (props) => {
 									<p className="crypto-symbol">{asset.symbol}</p>
 								</a>
 							</div>
-							<td>{"$" +formatCurrency(parseFloat(asset.priceUsd))}</td>
+							<td>{"$" + formatCurrency(parseFloat(asset.priceUsd))}</td>
 							<td>{"$" + formatCurrency(parseFloat(asset.marketCapUsd))}</td>
 							<td>{formatCurrency(parseFloat(asset.supply))}</td>
 							<td>{"$" + formatCurrency(parseFloat(asset.vwap24Hr))}</td>
 							<td>{"$" + formatCurrency(parseFloat(asset.volumeUsd24Hr))}</td>
-							<td className={parseFloat(asset.changePercent24Hr) < 0 ? "neg-change" : "pos-change"}>{formatPercentage(parseFloat(asset.changePercent24Hr))}</td>
+							<td
+								className={
+									parseFloat(asset.changePercent24Hr) < 0
+										? "neg-change"
+										: "pos-change"
+								}
+							>
+								{formatPercentage(parseFloat(asset.changePercent24Hr))}
+							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+			
+			<Button primary rounded onClick={() => setCurrentLimit(currentLimit + 20)}>View more</Button>
 		</div>
 	);
 };
@@ -81,8 +103,10 @@ const mapStateToProps = (state) => ({
 	loading: state.cryptoReducer.loading,
 	assets: state.cryptoReducer.assets,
 	error: state.cryptoReducer.error,
+	currentLimit: state.cryptoReducer.currentLimit,
 });
 
 export default connect(mapStateToProps, {
-	fetchCryptocurrencies: () => getCryptocurrencies(),
+	fetchCryptocurrencies: (a) => getCryptocurrencies(a),
+	setCurrentLimit: (a) => getCurrentLimit(a),
 })(Explore);
