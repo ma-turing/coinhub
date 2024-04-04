@@ -21,9 +21,11 @@ export const getAssets = (currentLimit) => {
 export const getAssetHistory = (assetId) => {
     return async (dispatch) => {
         dispatch({type: types.GET_ASSET_HISTORY_START})
+        // console.log(assetId, 'id');
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/assets/${assetId}/history`, {params: {interval: "m1"}})
             dispatch({type: types.GET_ASSET_HISTORY_SUCCESS, payload: response.data.data})
+            // console.log(response.data.data, 'res');
         } catch (error) {
             dispatch({type: types.GET_ASSET_HISTORY_FAIL, payload: error.message})
         }

@@ -13,7 +13,7 @@ const assetHistoryReducer = (state = initialState, action) => {
         case types.GET_ASSET_HISTORY_START:
             return {...state, loading: true}
         case types.GET_ASSET_HISTORY_SUCCESS:
-            return {...state, loading: false, assets: payload}
+            return {...state, loading: false, history: payload}
         case types.GET_ASSET_HISTORY_FAIL:
             return {...state, loading: false, error: payload}
         default:
