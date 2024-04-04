@@ -41,15 +41,19 @@
 
 table {
 	width: 75%;
-	border: 1px solid var(--fill-color);
+	border: medium;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
 	border-radius: 5px;
-	margin: 50px 0;
+	margin-top: -120px;
+	margin-bottom: 50px;
 }
 
 thead {
 	display: flex;
 	border-bottom: 1px solid var(--form-border-color);
 	background-color: var(--fill-color);
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 thead th {
@@ -80,6 +84,10 @@ tbody {
 tr {
 	display: flex;
 	border-bottom: 1px solid var(--form-border-color);
+}
+
+tr:last-child {
+	border-bottom: none;
 }
 
 tr td {
@@ -136,4 +144,12 @@ tr .crypto {
 
 .pos-change {
 	color: var(--success-color);
+}
+
+.appreciating {
+	background-color: rgba(45,192,113, 0.2);
+}
+
+.depreciating {
+	background-color: rgba(255,0,0, 0.2);
 }

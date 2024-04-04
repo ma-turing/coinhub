@@ -1,24 +1,55 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { getCryptocurrencies, getCurrentLimit } from "../../redux/actionCreators";
+import {
+	getAssetHistory,
+	getAssets,
+	getCurrentLimit,
+} from "../../redux/actionCreators";
 import { formatCurrency, formatPercentage } from "../../utils/formatter";
 import Button from "../../components/Button/Button";
 import "./Explore.css";
 
 const Explore = (props) => {
-	const { fetchCryptocurrencies, setCurrentLimit, loading, assets, error, currentLimit } = props;
+	const {
+		fetchAssets,
+		setCurrentLimit,
+		loading,
+		assets,
+		error,
+		currentLimit,
+		fetchAssetHistory,
+		history,
+	} = props;
 
-	
+	const [assetId, setAssetId] = useState(null);
 
 	useEffect(() => {
-		fetchCryptocurrencies(currentLimit);
+		fetchAssets(currentLimit);
 
 		const intervalId = setInterval(() => {
-			fetchCryptocurrencies(currentLimit)
-		}, 60000)
+			fetchAssets(currentLimit);
+			// Fetch asset history for all assets
+			assets.forEach((asset) => {
+				console.log(asset.id);
+				fetchAssetHistory(asset.id);
+			});
+		}, 60000);
 
-		return () => clearInterval(intervalId)
-	}, [fetchCryptocurrencies, currentLimit]);
+		return () => clearInterval(intervalId);
+	}, [fetchAssets, currentLimit, fetchAssetHistory]);
+
+	// useEffect(() => {
+	// 	if (assetId) {
+	// 		fetchAssetHistory(assetId);
+	// 	}
+	// }, [fetchAssetHistory, assetId]);
+
+	const oldPriceUsd = formatCurrency(
+		parseFloat(history[history.length - 1]?.priceUsd)
+	);
+
+	// console.log(history, "history2");
+	// console.log(oldPriceUsd, "history2");
 
 	return (
 		<div className="explore-container">
@@ -63,7 +94,17 @@ const Explore = (props) => {
 				</thead>
 				<tbody>
 					{assets.map((asset) => (
-						<tr key={asset.id}>
+						<tr
+							key={asset.id}
+							onClick={() => setAssetId(asset.id)}
+							// className={
+							// 	formatCurrency(parseFloat(asset.priceUsd)) > oldPriceUsd
+							// 		? "appreciating"
+							// 		: formatCurrency(parseFloat(asset.priceUsd)) < oldPriceUsd
+							// 		? "depreciating"
+							// 		: ""
+							// }
+						>
 							<td>{asset.rank}</td>
 							<div className="crypto">
 								<img
@@ -93,20 +134,28 @@ const Explore = (props) => {
 					))}
 				</tbody>
 			</table>
-			
-			<Button primary rounded onClick={() => setCurrentLimit(currentLimit + 20)}>View more</Button>
+
+			<Button
+				primary
+				rounded
+				onClick={() => setCurrentLimit(currentLimit + 20)}
+			>
+				View more
+			</Button>
 		</div>
 	);
 };
 
 const mapStateToProps = (state) => ({
-	loading: state.cryptoReducer.loading,
-	assets: state.cryptoReducer.assets,
-	error: state.cryptoReducer.error,
-	currentLimit: state.cryptoReducer.currentLimit,
+	loading: state.assets.loading,
+	assets: state.assets.assets,
+	error: state.assets.error,
+	currentLimit: state.assets.currentLimit,
+	history: state.assetHistory.history,
 });
 
 export default connect(mapStateToProps, {
-	fetchCryptocurrencies: (a) => getCryptocurrencies(a),
+	fetchAssets: (a) => getAssets(a),
 	setCurrentLimit: (a) => getCurrentLimit(a),
+	fetchAssetHistory: (a) => getAssetHistory(a),
 })(Explore);
