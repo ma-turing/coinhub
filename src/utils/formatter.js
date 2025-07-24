@@ -17,3 +17,8 @@ export const formatCurrency = (num) => {
 export const formatPercentage = (num) => {
     return formatNumber(num) + "%";
 };
+
+export const formatNumberWithCommas = (num) => {
+    if (num == null || isNaN(num)) return '0';
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
