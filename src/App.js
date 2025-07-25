@@ -11,6 +11,7 @@ import "./App.css";
 const Home = lazy(() => import("./views/Home/Home"));
 const Error = lazy(() => import("./views/Error/Error"));
 const Explore = lazy(() => import("./views/Explore/Explore"));
+const PriceHistory = lazy(() => import("./views/PriceHistory/PriceHistory"));
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					<Routes>
 						<Route path="/*" element={<Home />} />
 						<Route path="/explore" element={<Explore />} />
+						<Route path="/price-history" element={<PriceHistory />} />
 						<Route path="*" element={<Error />} />
 					</Routes>
 				</Suspense>
