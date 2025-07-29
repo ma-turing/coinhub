@@ -1,0 +1,154 @@
+name: Auto Assign Reviewers
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    branches: ['main', 'develop']
+
+jobs:
+  assign-reviewers:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            src/components/UserSettings/**
+            src/components/User*/**
+            src/views/UserSettings/**
+            src/views/User*/**
+            src/redux/slices/user*.js
+            src/hooks/useUser*.js
+            src/components/Auth*/**
+            src/components/Profile*/**
+            src/views/Auth*/**
+            src/views/Profile*/**
+            src/redux/slices/auth*.js
+            src/hooks/useAuth*.js
+            src/views/Contact/**
+            src/components/Rating/**
+            src/utils/userConfig.js
+            src/utils/settings*.js
+            src/store/**
+
+      - name: Check if user settings related files changed
+        id: check-user-files
+        run: |
+          if [[ "${{ steps.changed-files.outputs.any_changed }}" == "true" ]]; then
+            echo "user_files_changed=true" >> $GITHUB_OUTPUT
+            echo "Changed user-related files:"
+            echo "${{ steps.changed-files.outputs.all_changed_files }}"
+          else
+            echo "user_files_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Add user settings label
+        if: steps.check-user-files.outputs.user_files_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['user-settings', 'needs-review']
+            });
+
+      - name: Request reviewers for user settings changes
+        if: steps.check-user-files.outputs.user_files_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const reviewers = ['ma-turing']; // Add more reviewers as needed
+            
+            // Don't assign the PR author as a reviewer
+            const author = context.payload.pull_request.user.login;
+            const filteredReviewers = reviewers.filter(reviewer => reviewer !== author);
+            
+            if (filteredReviewers.length > 0) {
+              await github.rest.pulls.requestReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+                reviewers: filteredReviewers
+              });
+              
+              // Add a comment explaining the automatic assignment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `🤖 **Automatic Reviewer Assignment**
+                
+                This PR modifies user settings or user-related functionality. The following reviewers have been automatically assigned:
+                ${filteredReviewers.map(r => `@${r}`).join(', ')}
+                
+                **Changed files:**
+                ${context.payload.pull_request.changed_files > 0 ? 
+                  '${{ steps.changed-files.outputs.all_changed_files }}'.split(' ').map(f => `- \`${f}\``).join('\n') : 
+                  'Files detected by pattern matching'}
+                
+                Please ensure all user-facing changes are thoroughly reviewed for:
+                - ✅ User experience impact
+                - ✅ Data privacy and security
+                - ✅ Accessibility compliance
+                - ✅ Error handling
+                - ✅ Test coverage`
+              });
+            }
+
+      - name: Check for high-impact changes
+        if: steps.check-user-files.outputs.user_files_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            
+            const highImpactPatterns = [
+              /src\/redux\/slices\/user.*\.js$/,
+              /src\/redux\/slices\/auth.*\.js$/,
+              /src\/store\/.*\.js$/,
+              /package\.json$/,
+              /src\/utils\/.*config.*\.js$/
+            ];
+            
+            const highImpactFiles = files.filter(file => 
+              highImpactPatterns.some(pattern => pattern.test(file.filename))
+            );
+            
+            if (highImpactFiles.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['high-impact', 'security-review']
+              });
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `⚠️ **High Impact Changes Detected**
+                
+                This PR modifies critical user settings infrastructure:
+                ${highImpactFiles.map(f => `- \`${f.filename}\``).join('\n')}
+                
+                **Additional review requirements:**
+                - 🔒 Security impact assessment required
+                - 🧪 Comprehensive testing needed
+                - 📋 Consider breaking change documentation
+                - 🚀 Deployment strategy review`
+              });
+            }

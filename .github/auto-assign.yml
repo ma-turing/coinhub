@@ -1,0 +1,166 @@
+# Configuration for auto-assign GitHub Action
+# This file defines rules for automatic reviewer assignment
+
+# Default reviewers for all PRs
+reviewers:
+  - ma-turing
+
+# Team-based assignment (if you have teams in the future)
+# teams:
+#   - frontend-team
+#   - backend-team
+
+# Number of reviewers to assign
+numberOfReviewers: 1
+
+# Number of assignees to assign
+numberOfAssignees: 0
+
+# Skip keywords - PRs with these in title/body won't get auto-assigned
+skipKeywords:
+  - wip
+  - draft
+  - "[skip-review]"
+  - "no-review"
+
+# File pattern based assignment
+filePatterns:
+  # User Settings Module
+  "src/components/UserSettings/**":
+    reviewers:
+      - ma-turing
+    labels:
+      - user-settings
+      - frontend
+  
+  "src/views/UserSettings/**":
+    reviewers:
+      - ma-turing
+    labels:
+      - user-settings
+      - frontend
+  
+  # Redux/State Management
+  "src/redux/slices/user*.js":
+    reviewers:
+      - ma-turing
+    labels:
+      - state-management
+      - user-settings
+      - high-impact
+  
+  "src/redux/slices/auth*.js":
+    reviewers:
+      - ma-turing
+    labels:
+      - authentication
+      - security
+      - high-impact
+  
+  # Store Configuration
+  "src/store/**":
+    reviewers:
+      - ma-turing
+    labels:
+      - state-management
+      - high-impact
+  
+  # Hooks
+  "src/hooks/useUser*.js":
+    reviewers:
+      - ma-turing
+    labels:
+      - hooks
+      - user-settings
+  
+  "src/hooks/useAuth*.js":
+    reviewers:
+      - ma-turing
+    labels:
+      - hooks
+      - authentication
+  
+  # Configuration files
+  "src/utils/*config*.js":
+    reviewers:
+      - ma-turing
+    labels:
+      - configuration
+      - high-impact
+  
+  # Package management
+  "package.json":
+    reviewers:
+      - ma-turing
+    labels:
+      - dependencies
+      - security
+      - high-impact
+  
+  "package-lock.json":
+    reviewers:
+      - ma-turing
+    labels:
+      - dependencies
+      - security
+  
+  # CI/CD
+  ".github/**":
+    reviewers:
+      - ma-turing
+    labels:
+      - ci-cd
+      - infrastructure
+  
+  # Documentation
+  "*.md":
+    reviewers:
+      - ma-turing
+    labels:
+      - documentation
+
+# Branch-specific rules
+branchRules:
+  main:
+    reviewers:
+      - ma-turing
+    requiredReviewers: 1
+    labels:
+      - main-branch
+      - critical
+  
+  develop:
+    reviewers:
+      - ma-turing
+    requiredReviewers: 1
+    labels:
+      - develop-branch
+
+# Size-based assignment
+sizeRules:
+  small: # < 10 lines changed
+    reviewers: 1
+  medium: # 10-100 lines changed
+    reviewers: 1
+    labels:
+      - medium-change
+  large: # > 100 lines changed
+    reviewers: 1
+    labels:
+      - large-change
+      - needs-careful-review
+
+# Priority assignment based on labels
+priorityLabels:
+  critical:
+    reviewers:
+      - ma-turing
+    requiredReviewers: 1
+  security:
+    reviewers:
+      - ma-turing
+    requiredReviewers: 1
+  breaking-change:
+    reviewers:
+      - ma-turing
+    requiredReviewers: 1
