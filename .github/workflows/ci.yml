@@ -1,0 +1,57 @@
+name: CI
+
+# Trigger the workflow on pull requests and pushes to main
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: [main]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    env:
+      CI: true
+      GENERATE_SOURCEMAP: false
+    
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Setup Node.js
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+      
+      # Run ESLint for code linting
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+      
+      # Run tests
+      - name: Run tests
+        run: npm test -- --coverage --ci --watchAll=false --passWithNoTests
+      
+      # Build the application
+      - name: Build application
+        run: npm run build
+      
+      # Upload test coverage (optional)
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: success()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false

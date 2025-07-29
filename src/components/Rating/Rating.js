@@ -3,11 +3,21 @@ import { Star } from "../../assets/star";
 import { colorTypes } from "../../utils/color";
 import "./Rating.css";
 
-const Rating = () => {
-	const [rating, setRating] = useState(4);
+const Rating = ({ value, onChange, readOnly = false }) => {
+	const [internalRating, setInternalRating] = useState(4);
+
+	// Use controlled value if provided, otherwise use internal state
+	const currentRating = value !== undefined ? value : internalRating;
 
 	const handleRating = (index) => {
-		setRating(index + 1);
+		if (readOnly) return;
+
+		const newRating = index + 1;
+		if (onChange) {
+			onChange(newRating);
+		} else {
+			setInternalRating(newRating);
+		}
 	};
 
 	return (
@@ -19,9 +29,9 @@ const Rating = () => {
 						onClick={() => {
 							handleRating(index);
 						}}
-                        className="rating"
+                        className={`rating ${readOnly ? 'rating-readonly' : ''}`}
 					>
-						<Star color={rating > index ? colorTypes.rating : colorTypes.light_text} />
+						<Star color={currentRating > index ? colorTypes.rating : colorTypes.light_text} />
 					</span>
 				);
 			})}

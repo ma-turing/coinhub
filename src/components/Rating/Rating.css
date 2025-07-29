@@ -8,4 +8,17 @@
 .rating svg {
     width: 22px;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.rating:hover svg {
+    transform: scale(1.1);
+}
+
+.rating-readonly svg {
+    cursor: default;
+}
+
+.rating-readonly:hover svg {
+    transform: none;
 }

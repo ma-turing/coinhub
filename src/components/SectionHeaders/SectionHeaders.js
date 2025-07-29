@@ -5,10 +5,10 @@ const SectionHeaders = (props) => {
 
 	return (
 		<div className="section-headers">
-			{heading && heading.split("\\\\n").map((h) => (
-				<h2>{h}</h2>
+			{heading && heading.split("\\\\n").map((h, index) => (
+				<h2 key={index}>{h}</h2>
 			))}
-			{subheading && subheading.split("\\\\n").map(s => <p>{s}</p>)}
+			{subheading && subheading.split("\\\\n").map((s, index) => <p key={index}>{s}</p>)}
 		</div>
 	);
 };
